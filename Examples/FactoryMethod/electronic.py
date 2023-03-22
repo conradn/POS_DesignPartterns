@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../')
+
 from factory_method import *
 
 electronics_factory = ElectronicsProductFactory()
