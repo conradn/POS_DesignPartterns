@@ -5,4 +5,5 @@ grocery_factory = GroceryProductFactory()
 pos1 = PointOfSale(grocery_factory)
 product = pos1.sell_product("Apples", 1.50)
 
-print(product)
+print(product.get_name());
+print(product.get_price());
