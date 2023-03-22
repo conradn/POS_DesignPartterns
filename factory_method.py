@@ -57,7 +57,7 @@ class PointOfSale:
     
     def sell_product(self, name, price, *args):
         product = self.product_factory.create_product(name, price, *args)
-        print(f"Sold {product.get_name()} for ${product.get_price()}")
+        return product
 
 # Example usage
 grocery_factory = GroceryProductFactory()
