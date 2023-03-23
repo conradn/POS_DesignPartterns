@@ -1,1 +1,1 @@
-from singletonPattern import cart
+from singletonPattern import *
