@@ -6,7 +6,7 @@ class Cart:
             raise Exception("Singleton class, use get_instance() method to get instance.")
         else:
             Cart.__instance = self
-            self.items = []
+            self.products = []
     
     @staticmethod
     def get_instance():
@@ -14,11 +14,29 @@ class Cart:
             Cart()
         return Cart.__instance
     
-    def add_item(self, item):
-        self.items.append(item)
+    def add_item(self, product):
+        self.products.append(product)
     
-    def remove_item(self, item):
-        self.items.remove(item)
+    def remove_item(self, product):
+        self.products.remove(product)
     
-    def get_items(self):
-        return self.items
+    def get_products(self):
+        return self.products
+    
+c = Cart().get_instance()
+c.add_item("product1")
+c.add_item("product2")
+print(c.get_products())
+
+
+
+
+
+
+    
+    
+        
+
+
+
+
