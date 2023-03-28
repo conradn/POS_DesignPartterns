@@ -35,3 +35,20 @@ class Cart:
             total += i['price']
 
         return total
+
+
+c = Cart().get_instance()
+
+product1 = c.product_details('Apple', 9000)
+product2 = c.product_details('Apple', 6000)
+product3 = c.product_details('Apple', 1000)
+product4 = c.product_details('Apple', 5000)
+
+print('before adding\n')
+c.add_product(product1,product2)
+print('after adding\n')
+print(c.get_products())
+print('on removing\n')
+print(c.remove_product(product1))
+print('after removing\n')
+print(c.get_products())
