@@ -50,6 +50,9 @@ class ElectronicsProductFactory(ProductFactory):
     def create_product(self, name, price, warranty):
         return ElectronicsProduct(name, price, warranty)
 
+
+        
+
 # Define the client code that uses the factories to create products
 class PointOfSale:
     def __init__(self, product_factory):
@@ -57,15 +60,5 @@ class PointOfSale:
     
     def sell_product(self, name, price, *args):
         product = self.product_factory.create_product(name, price, *args)
-        #print(f"Sold {product.get_name()} for ${product.get_price()}")
         return product
 
-# Example usage
-grocery_factory = GroceryProductFactory()
-electronics_factory = ElectronicsProductFactory()
-
-pos1 = PointOfSale(grocery_factory)
-pos1.sell_product("Apples", 1.50)
-
-pos2 = PointOfSale(electronics_factory)
-pos2.sell_product("Laptop", 999.99, "2-year warranty")
