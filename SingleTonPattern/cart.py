@@ -15,8 +15,8 @@ class Cart:
             Cart()
         return Cart.__instance
 
-    def product_details(self, name, price):
-        return {'name': name, 'price': price}
+    def product_details(self,product):
+        return {'name': product.get_name(), 'price': product.get_price()}
 
     def add_product(self, *product_list):
         for product in product_list:
@@ -35,15 +35,3 @@ class Cart:
             total += i['price']
 
         return total
-
-
-c = Cart().get_instance()
-
-product1 = c.product_details('Apple', 9000)
-product2 = c.product_details('Apple', 6000)
-product3 = c.product_details('Apple', 1000)
-
-c.add_product(product1,product2,product3 )
-
-# get total
-print(c.get_total())
