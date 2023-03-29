@@ -1,5 +1,5 @@
 import unittest
-from observer import Product
+from ObserverPattern.observer import Product
 
 class ProductTestCase(unittest.TestCase):
 

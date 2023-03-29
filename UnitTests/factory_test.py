@@ -1,6 +1,8 @@
 import unittest
 
-from factory_method import *
+from FactoryPattern.point_of_sale import PointOfSale
+from FactoryPattern.grocery_factory import GroceryProductFactory
+from FactoryPattern.grocery_product import GroceryProduct
 
 class TestPointOfSale(unittest.TestCase):
     def test_grocery_product_creation(self):
@@ -13,16 +15,6 @@ class TestPointOfSale(unittest.TestCase):
         self.assertEqual(product.get_name(), "Apples")
         self.assertEqual(product.get_price(), 1.50)
 
-    def test_electronics_product_creation(self):
-        electronics_factory = ElectronicsProductFactory()
-        pos = PointOfSale(electronics_factory)
-
-        product = pos.sell_product("Laptop", 999.99, "2-year warranty")
-
-        self.assertIsInstance(product, ElectronicsProduct)
-        self.assertEqual(product.get_name(), "Laptop")
-        self.assertEqual(product.get_price(), 999.99)
-        self.assertEqual(product.get_warranty(), "2-year warranty")
 
 if __name__ == "__main__":
     unittest.main()

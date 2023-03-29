@@ -1,5 +1,5 @@
 import unittest
-from singletonPattern import *
+from SingleTonPattern.cart import Cart
 class TestCart(unittest.TestCase):
 
     def test_singleton(self):

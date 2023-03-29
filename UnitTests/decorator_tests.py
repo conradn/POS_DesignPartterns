@@ -1,5 +1,9 @@
 import unittest
-from decorator_method import *
+from DecoratorPattern.discount_decorator import DiscountDecorator
+from DecoratorPattern.tax_decorator import TaxDecorator
+from FactoryPattern.point_of_sale import PointOfSale
+from FactoryPattern.grocery_factory import GroceryProductFactory
+
 class TestProduct(unittest.TestCase):
 
     def test_basic_product(self):
