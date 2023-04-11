@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template, jsonify
 from flask_mysqldb import MySQL
+from SingleTonPattern.product import Product
 
 app = Flask(__name__)
-
 
 # db configuration
 
@@ -12,7 +12,6 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'pos'
 
 mysql = MySQL(app)
-
 
 @app.route('/')
 def home_page():
@@ -26,11 +25,8 @@ def add_product():
     quantity = request.form['quantity']
     profile = request.form['profile']
 
-    cur = mysql.connection.cursor()
-    cur.execute("INSERT INTO products (name, price, product_profile_image, quantity) VALUES (%s, %s, %s, %s)",
-                (name, price, profile, quantity))
-    mysql.connection.commit()
-    cur.close()
+    new_product = Product(mysql).get_instance()
+    new_product.insert_product(name,price,profile,quantity)
 
     data = {'message': 'Saved successfuly'}
     return jsonify(data)
@@ -38,15 +34,9 @@ def add_product():
 
 @app.route('/api/products')
 def products():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM products ORDER BY id DESC")
-    results = cur.fetchall()
-    cur.close()
-    products_list = []
-    for row in results:
-        product = {'id': row[0], 'name': row[1],
-                   'price': row[2], 'profile': row[3], 'quantity': row[4]}
-        products_list.append(product)
+    product = Product(mysql).get_instance()
+    products_list = product.get_products()
+
     return jsonify(products_list)
 
 
@@ -54,17 +44,9 @@ def products():
 def search():
     querry = request.form['querry']
 
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM products WHERE name LIKE '%" +
-                querry + "%' ORDER BY id DESC")
-
-    results = cur.fetchall()
-    cur.close()
-    products_list = []
-    for row in results:
-        product = {'id': row[0], 'name': row[1],
-                   'price': row[2], 'profile': row[3], 'quantity': row[4]}
-        products_list.append(product)
+    product = Product(mysql).get_instance()
+    products_list = product.find_products(querry)
+    
     return jsonify(products_list)
 
 
