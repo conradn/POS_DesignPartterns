@@ -12,6 +12,7 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'pos'
 
 mysql = MySQL(app)
+product = Product(mysql).get_instance()
 
 @app.route('/')
 def home_page():
@@ -25,8 +26,7 @@ def add_product():
     quantity = request.form['quantity']
     profile = request.form['profile']
 
-    new_product = Product(mysql).get_instance()
-    new_product.insert_product(name,price,profile,quantity)
+    product.insert_product(name,price,profile,quantity)
 
     data = {'message': 'Saved successfuly'}
     return jsonify(data)
@@ -34,17 +34,14 @@ def add_product():
 
 @app.route('/api/products')
 def products():
-    product = Product(mysql).get_instance()
     products_list = product.get_products()
 
     return jsonify(products_list)
-
 
 @app.route('/api/search', methods=['POST'])
 def search():
     querry = request.form['querry']
 
-    product = Product(mysql).get_instance()
     products_list = product.find_products(querry)
     
     return jsonify(products_list)
@@ -52,3 +49,4 @@ def search():
 
 if __name__ == "__main__":
     app.run(debug=True)
+

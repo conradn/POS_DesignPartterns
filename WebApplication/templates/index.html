@@ -64,6 +64,11 @@
       input[type="radio"]:checked+label img {
          border-color: blue;
       }
+
+      .modal {
+         overflow: hidden !important;
+      }
+
    </style>
 </head>
 
@@ -146,14 +151,16 @@
                         <div class="col-lg-4 col-sm-4" v-for="product in products" :key="product.id">
                            <div class="box_main">
                               <h4 class="shirt_text">[[ product.name ]]</h4>
-                              <p class="price_text">Price <span style="color: #262626;">UGX [[ product.price.toLocaleString() ]]</span>
+                              <p class="price_text">Price <span style="color: #262626;">UGX [[
+                                    product.price.toLocaleString() ]]</span>
                               </p>
                               <div class="electronic_img">
                                  <img :src="`/static/${product.profile}`">
                               </div>
                               <div class="btn_main">
                                  <div class="buy_bt"><a href="#">Add to Cart</a></div>
-                                 <div class="seemore_bt"><a href="#">Quantity: [[ product.quantity.toLocaleString() ]]</a></div>
+                                 <div class="seemore_bt"><a href="#">Quantity: [[ product.quantity.toLocaleString()
+                                       ]]</a></div>
                               </div>
                            </div>
                         </div>
