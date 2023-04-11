@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>POS</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- bootstrap css -->
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+   <!-- style css -->
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+   <!-- Responsive-->
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+   <!-- fevicon -->
+   <link rel="icon" href="{{ url_for('static', filename='images/fevicon.png') }}" type="image/gif" />
+   <!-- Scrollbar Custom CSS -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.mCustomScrollbar.min.css') }}">
+   <!-- Tweaks for older IEs-->
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <!-- fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+   <!-- font awesome -->
+   <link rel="stylesheet" type="text/css"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- owl stylesheets -->
+   <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext"
+      rel="stylesheet">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+      media="screen">
+   <script src="https://unpkg.com/vue@next"></script>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
+
+   <style lang="">
+      /* Hide the radio buttons */
+      input[type="radio"] {
+         display: none;
+      }
+
+      /* Style the images */
+      label img {
+         width: 50px;
+         height: 50px;
+         border: 2px solid transparent;
+         cursor: pointer;
+      }
+
+      /* Style the selected image */
+      input[type="radio"]:checked+label img {
+         border-color: blue;
+      }
+   </style>
+</head>
+
+<body id="app">
+   <!-- banner bg main start -->
+   <div class="banner_bg_main">
+      <!-- header top section start -->
+      <div class="container">
+         <div class="header_section_top">
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="custom_menu">
+                     <ul>
+                        <li><a style="cursor:pointer" data-toggle="modal" data-target="#reportModal">Reports</a></li>
+                        <li><a style="cursor:pointer" data-toggle="modal" data-target="#newProductModal">New Product</a>
+                        </li>
+                        <!-- <li><a style="cursor:pointer" href="#">Inventory</a></li>
+                        <li><a style="cursor:pointer" href="#">Sales</a></li> -->
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- header top section start -->
+
+
+      <!-- header section start -->
+      <div class="header_section" style="padding-top:100px">
+         <div class="container">
+            <div class="containt_main">
+
+               <div class="main">
+                  <!-- Another variation with a button -->
+                  <div class="input-group col-md-6">
+                     <input v-model="searchQuerry" type="text" class="form-control" placeholder="Search for a product">
+                     <div class="input-group-append">
+                        <button @click="searchProduct()" class="btn btn-secondary" type="button"
+                           style="background-color: #f26522; border-color:#f26522 ">
+                           <i class="fa fa-search"></i>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               <div class="header_box">
+
+                  <div class="login_menu">
+                     <ul>
+                        <li><a data-toggle="modal" data-target="#cartModal" style="cursor:pointer">
+                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                              <span class="padding_10">Cart</span></a>
+                        </li>
+                     </ul>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- header section end -->
+      <!-- banner section start -->
+      <div class="banner_section layout_padding">
+         <div class="container">
+
+         </div>
+      </div>
+      <!-- banner section end -->
+   </div>
+   <!-- banner bg main end -->
+
+   <!-- products section start -->
+   <div class="fashion_section">
+      <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <div class="container">
+                  <h1 class="fashion_taital">Products</h1>
+                  <div class="fashion_section_2">
+                     <div class="row" v-if="products && products.length > 0">
+                        <div class="col-lg-4 col-sm-4" v-for="product in products" :key="product.id">
+                           <div class="box_main">
+                              <h4 class="shirt_text">[[ product.name ]]</h4>
+                              <p class="price_text">Price <span style="color: #262626;">UGX [[ product.price.toLocaleString() ]]</span>
+                              </p>
+                              <div class="electronic_img">
+                                 <img :src="`/static/${product.profile}`">
+                              </div>
+                              <div class="btn_main">
+                                 <div class="buy_bt"><a href="#">Add to Cart</a></div>
+                                 <div class="seemore_bt"><a href="#">Quantity: [[ product.quantity.toLocaleString() ]]</a></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div v-else>
+                        <p class="text-center">No products found</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+   <!-- products section end -->
+
+   <!-- copyright section start -->
+   <div class="copyright_section">
+      <div class="container">
+         <p class="copyright_text">© 2020 All Rights Reserved.</a></p>
+      </div>
+   </div>
+
+   <!-- cart Modal -->
+   <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               ...
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- new product Modal -->
+   <div class="modal fade" id="newProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <form action="" id="newProductForm">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">New Product</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+
+
+
+                  <label for="">Name</label>
+                  <input name="name" type="text" class="form-control form-control-sm" placeholder="">
+
+                  <br>
+
+
+
+                  <label for="">Unit Price</label>
+                  <input name="price" type="number" class="form-control form-control-sm" placeholder="">
+
+                  <br>
+
+                  <label for="">Quantity</label>
+                  <input name="quantity" type="number" class="form-control form-control-sm" placeholder="">
+
+                  <br>
+
+                  <label for="" class="text-center">Choose Profile</label>
+                  <div class="row">
+                     <div class="col-md-4">
+                        <input type="radio" id="radio1" name="profile" value="images/mobile-img.png" />
+                        <label for="radio1"><img src="{{ url_for('static', filename='images/mobile-img.png') }}"
+                              alt="Image 1"></label>
+                     </div>
+                     <div class="col-md-4">
+                        <input type="radio" id="radio2" name="profile" value="images/computer-img.png" />
+                        <label for="radio2"><img src="{{ url_for('static', filename='images/computer-img.png') }}"
+                              alt="Image 2"></label>
+                     </div>
+                     <div class="col-md-4">
+                        <input type="radio" id="radio3" name="profile" value="images/laptop-img.png" />
+                        <label for="radio3"><img src="{{ url_for('static', filename='images/laptop-img.png') }}"
+                              alt="Image 3"></label>
+
+                     </div>
+                     <div class="col-md-4">
+                        <input type="radio" id="radio4" name="profile" value="images/kangan-img.png" />
+                        <label for="radio4"><img src="{{ url_for('static', filename='images/kangan-img.png') }}"
+                              alt="Image 1"></label>
+                     </div>
+                     <div class="col-md-4">
+                        <input type="radio" id="radio5" name="profile" value="images/jhumka-img.png" />
+                        <label for="radio5"><img src="{{ url_for('static', filename='images/jhumka-img.png') }}"
+                              alt="Image 2"></label>
+                     </div>
+                     <div class="col-md-4">
+                        <input type="radio" id="radio6" name="profile" value="images/neklesh-img.png" />
+                        <label for="radio6"><img src="{{ url_for('static', filename='images/neklesh-img.png') }}"
+                              alt="Image 3"></label>
+
+                     </div>
+
+
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" @click="newProduct">Save</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+
+
+
+
+   <!-- report Modal -->
+   <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               ...
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+   <!-- copyright section end -->
+   <!-- Javascript files-->
+   <!-- jQuery -->
+   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+   <!-- Popper JS -->
+   <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+   <!-- Bootstrap JS -->
+   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+   <!-- jQuery -->
+   <script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
+   <!-- Plugin JS -->
+   <script src="{{ url_for('static', filename='js/plugin.js') }}"></script>
+   <!-- Sidebar JS -->
+   <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+   <!-- Custom JS -->
+   <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+   <!-- vue js -->
+   <script src="{{ url_for('static', filename='app.js') }}"></script>
+
+
+   <script>
+      function openNav() {
+         document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+         document.getElementById("mySidenav").style.width = "0";
+      }
+   </script>
+
+
+</body>
+
+</html>
