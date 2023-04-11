@@ -25,11 +25,11 @@ class Product:
         results = cur.fetchall()
         cur.close()
         products_list = []
-        product = {}
+        product = None
         for row in results:
             product = {'id': row[0], 'name': row[1],
                        'price': row[2], 'profile': row[3], 'quantity': row[4]}
-        products_list.append(product)
+            products_list.append(product)
 
         return products_list
 
@@ -41,9 +41,10 @@ class Product:
         results = cur.fetchall()
         cur.close()
         products_list = []
+        product = None
         for row in results:
             product = {'id': row[0], 'name': row[1],
                        'price': row[2], 'profile': row[3], 'quantity': row[4]}
-        products_list.append(product)
+            products_list.append(product)
 
         return products_list
