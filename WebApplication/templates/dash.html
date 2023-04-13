@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POS System Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<style>
+        /* Global styles */
+
+body {
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	background-color: #f2f2f2;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+/* Header styles */
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 10px 20px;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav ul li {
+	margin-right: 20px;
+}
+
+nav ul li:last-child {
+	margin-right: 0;
+}
+
+nav ul li a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+nav ul li a:hover {
+	color: #ccc;
+}
+
+/* Card styles */
+
+.card-container {
+	display:flex;
+    justify-content: space-between;
+	flex-wrap: wrap;
+	margin-top: 50px;
+    
+}
+
+.card {
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	padding: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	flex-basis: calc(25% - 20px);
+}
+
+.card h2 {
+	margin-top: 0;
+	font-size: 24px;
+}
+
+.card p {
+	margin-bottom: 20px;
+}
+
+.btn {
+	background-color: #333;
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+	background-color: #666;
+}
+#logout-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  top: 10%;
+  padding: 10px 20px;
+  font-size: 16px;
+  float: right;
+}
+
+#logout-btn:hover {
+  background-color: #c82333;
+  cursor: pointer;
+}
+
+main{
+    margin-left: 40px;
+}
+footer{
+    float: right;
+}
+    </style>
+</head>
+<body>
+
+	<header>
+		<nav>
+			<ul>
+				<li><a href="#">Dashboard</a></li>
+				<li><a href="#">Products</a></li>
+				<li><a href="#">Sales</a></li>
+				<li><a href="#">Reports</a></li>
+				<li><a href="#">Settings</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+        <button id="logout-btn" onclick="window.location.href='/'">
+  <i class="fas fa-power-off"></i> Logout
+</button>
+		<h1>Hello POS User,</h1>
+        <h2>What would you like to do today?</h2>
+        
+
+		<div class="card-container">
+			<div class="card">
+				<h2>Manage Products</h2>
+				<p>View, add, edit, and delete products in your inventory.</p>
+				<a href="#" class="btn">Manage Products</a>
+			</div>
+
+			<div class="card">
+				<h2>Make Sales</h2>
+				<p>Create new sales, process payments, and track orders.</p>
+				<a href="#" class="btn">Make Sales</a>
+			</div>
+
+			<div class="card">
+				<h2>View Reports</h2>
+				<p>Track sales and inventory metrics, generate reports.</p>
+				<a href="#" class="btn">View Reports</a>
+			</div>
+            <div class="card">
+                <h2>Manage Users</h2>
+                <p>View, add, edit, and delete users in your system.</p>
+                <a href="#" class="btn">Manage Users</a>
+            </div>
+            
+			<div class="card">
+				<h2>Settings</h2>
+				<p>Configure system settings and preferences.</p>
+				<a href="#" class="btn">Settings</a>
+			</div>
+		</div>
+
+	</main>
+
+	<footer>
+		<p>Copyright &copy; 2023 POS System</p>
+	</footer>
+
+</body>
+</html>

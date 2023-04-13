@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping Cart</title>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product_id, item in cart.items() %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>${{ item.price }}</td>
+          <td>
+            <form method="POST" action="/update-cart/{{ product_id }}">
+              <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+              <input type="submit" value="Update">
+            </form>
+          </td>
+          <td>${{ item.price * item.quantity }}</td>
+          <td><a href="/remove-from-cart/{{ product_id }}">Remove</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Total:</td>
+        <td>${{ sum(item.price * item.quantity for item in cart.values()) }}</td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>
