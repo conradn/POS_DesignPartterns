@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, jsonify
 from flask_mysqldb import MySQL
-from cart import *
 
 
 app = Flask(__name__)
@@ -18,7 +17,7 @@ mysql = MySQL(app)
 
 @app.route('/')
 def home_page():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/login')
 def login_page():
@@ -42,11 +41,10 @@ def add_product():
     name = request.form['name']
     price = request.form['price']
     quantity = request.form['quantity']
-    profile = request.form['profile']
 
     cur = mysql.connection.cursor()
-    cur.execute("INSERT INTO products (name, price, product_profile_image, quantity) VALUES (%s, %s, %s, %s)",
-                (name, price, profile, quantity))
+    cur.execute("INSERT INTO products (name, price, quantity) VALUES (%s, %s, %s)",
+                (name, price, quantity))
     mysql.connection.commit()
     cur.close()
 

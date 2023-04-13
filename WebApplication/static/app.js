@@ -15,8 +15,6 @@ const app = Vue.createApp({
         newProduct() {
             const form = document.querySelector('#newProductForm');
 
-            $('#newProductModal').modal('hide')
-
             const formData = new FormData(form);
 
             for (const pair of formData.entries()) {

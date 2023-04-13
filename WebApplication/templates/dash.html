@@ -1,128 +1,132 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>POS System Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<style>
-        /* Global styles */
+		/* Global styles */
 
-body {
-	font-family: Arial, sans-serif;
-	font-size: 16px;
-	margin: 0;
-	padding: 0;
-	background-color: #f2f2f2;
-}
+		body {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
 
-.container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 20px;
-}
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+		}
 
-/* Header styles */
+		/* Header styles */
 
-header {
-	background-color: #333;
-	color: #fff;
-	padding: 10px 20px;
-}
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 10px 20px;
+		}
 
-nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
+		nav ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 
-nav ul li {
-	margin-right: 20px;
-}
+		nav ul li {
+			margin-right: 20px;
+		}
 
-nav ul li:last-child {
-	margin-right: 0;
-}
+		nav ul li:last-child {
+			margin-right: 0;
+		}
 
-nav ul li a {
-	color: #fff;
-	text-decoration: none;
-	font-weight: bold;
-}
+		nav ul li a {
+			color: #fff;
+			text-decoration: none;
+			font-weight: bold;
+		}
 
-nav ul li a:hover {
-	color: #ccc;
-}
+		nav ul li a:hover {
+			color: #ccc;
+		}
 
-/* Card styles */
+		/* Card styles */
 
-.card-container {
-	display:flex;
-    justify-content: space-between;
-	flex-wrap: wrap;
-	margin-top: 50px;
-    
-}
+		.card-container {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin-top: 50px;
 
-.card {
-	background-color: #fff;
-	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0,0,0,0.1);
-	padding: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
-	flex-basis: calc(25% - 20px);
-}
+		}
 
-.card h2 {
-	margin-top: 0;
-	font-size: 24px;
-}
+		.card {
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			flex-basis: calc(25% - 20px);
+		}
 
-.card p {
-	margin-bottom: 20px;
-}
+		.card h2 {
+			margin-top: 0;
+			font-size: 24px;
+		}
 
-.btn {
-	background-color: #333;
-	color: #fff;
-	padding: 10px 20px;
-	border-radius: 5px;
-	border: none;
-	cursor: pointer;
-	text-decoration: none;
-	display: inline-block;
-	transition: background-color 0.3s ease-in-out;
-}
+		.card p {
+			margin-bottom: 20px;
+		}
 
-.btn:hover {
-	background-color: #666;
-}
-#logout-btn {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  top: 10%;
-  padding: 10px 20px;
-  font-size: 16px;
-  float: right;
-}
+		.btn {
+			background-color: #333;
+			color: #fff;
+			padding: 10px 20px;
+			border-radius: 5px;
+			border: none;
+			cursor: pointer;
+			text-decoration: none;
+			display: inline-block;
+			transition: background-color 0.3s ease-in-out;
+		}
 
-#logout-btn:hover {
-  background-color: #c82333;
-  cursor: pointer;
-}
+		.btn:hover {
+			background-color: #666;
+		}
 
-main{
-    margin-left: 40px;
-}
-footer{
-    float: right;
-}
-    </style>
+		#logout-btn {
+			background-color: #dc3545;
+			color: #fff;
+			border: none;
+			border-radius: 50px;
+			top: 10%;
+			padding: 10px 20px;
+			font-size: 16px;
+			float: right;
+		}
+
+		#logout-btn:hover {
+			background-color: #c82333;
+			cursor: pointer;
+		}
+
+		main {
+			margin-left: 40px;
+		}
+
+		footer {
+			float: right;
+		}
+	</style>
 </head>
+
 <body>
 
 	<header>
@@ -138,12 +142,12 @@ footer{
 	</header>
 
 	<main>
-        <button id="logout-btn" onclick="window.location.href='/'">
-  <i class="fas fa-power-off"></i> Logout
-</button>
+		<button id="logout-btn" onclick="window.location.href='/'">
+			<i class="fas fa-power-off"></i> Logout
+		</button>
 		<h1>Hello POS User,</h1>
-        <h2>What would you like to do today?</h2>
-        
+		<h2>What would you like to do today?</h2>
+
 
 		<div class="card-container">
 			<div class="card">
@@ -163,12 +167,12 @@ footer{
 				<p>Track sales and inventory metrics, generate reports.</p>
 				<a href="#" class="btn">View Reports</a>
 			</div>
-            <div class="card">
-                <h2>Manage Users</h2>
-                <p>View, add, edit, and delete users in your system.</p>
-                <a href="#" class="btn">Manage Users</a>
-            </div>
-            
+			<div class="card">
+				<h2>Manage Users</h2>
+				<p>View, add, edit, and delete users in your system.</p>
+				<a href="#" class="btn">Manage Users</a>
+			</div>
+
 			<div class="card">
 				<h2>Settings</h2>
 				<p>Configure system settings and preferences.</p>
@@ -183,4 +187,5 @@ footer{
 	</footer>
 
 </body>
+
 </html>
