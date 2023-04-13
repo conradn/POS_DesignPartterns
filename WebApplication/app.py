@@ -41,10 +41,31 @@ def add_product():
     price = request.form['price']
     quantity = request.form['quantity']
 
-    product.insert_product(name,price,profile,quantity)
+    product.insert_product(name,price,quantity)
 
     data = {'message': 'Saved successfuly'}
     return jsonify(data)
+
+@app.route('/api/edit', methods=['POST'])
+def edit_product():
+    id = request.form['id']
+    name = request.form['name']
+    price = request.form['price']
+    quantity = request.form['quantity']
+
+    product.edit_product(id,name,price,quantity)
+
+    data = {'message': 'Edited successfuly'}
+    return jsonify(data)
+
+@app.route('/api/delete/<int:id>', methods=['DELETE'])
+def delete_product(id):
+    product.delete_product(id)
+
+    data = {'message': 'Deleted successfuly'}
+    return jsonify(data)
+
+
 
 
 @app.route('/api/products')
@@ -63,27 +84,14 @@ def search():
 
 @app.route('/api/add_to_cart', methods=['POST'])
 def add_to_cart():
-    product_id = request.form['product_id']
-    product_name = request.form['product_name']
-    product_price = request.form['product_price']
-    product_quantity = request.form['product_quantity']
-    product_profile = request.form['product_profile']
-
-    product = {'id': product_id, 'name': product_name, 'price': product_price,
-               'quantity': product_quantity, 'profile': product_profile}
-
-    Cart.get_instance().add_product(product)
+   
 
     return jsonify({'message': 'Added to cart'})
 
 
 @app.route('/cart')
 def cart():
-    # Sample cart data
-
-    cart = Cart.get_instance().get_products()
-    # cart_total = sum(item['price'] * item['quantity'] for item in cart)
-    return render_template('cart.html', cart=cart, cart_total=Cart.get_instance().get_total())
+   return 
 
 if __name__ == "__main__":
     app.run(debug=True)
