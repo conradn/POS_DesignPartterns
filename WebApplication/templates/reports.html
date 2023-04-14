@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.logout-btn i {
+  margin-right: 5px;
+}
+.home-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input[type="date"],
+form select {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+form button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  float: left;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+  background-color: #555;
+}
+
+.report-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+@media print {
+  /* Hide non-report elements when printing */
+  header {
+    display: none;
+  }
+  
+  form {
+    display: none;
+  }
+  
+  /* Make report container full width */
+  .report-container {
+    width: 100%;
+  }
+}
+
+    </style>
+</head>
+<body>
+  <header>
+    <h1>Reports</h1>
+    <button class="logout-btn"><i class="fas fa-power-off"></i>Logout</button>
+  </header>
+   
+  <main>
+    <button class="home-btn" onclick="window.location.href='/dashboard'"><i class="fas fa-home"></i> Home</button>
+    <form>
+      <label for="start-date">Start Date:</label>
+      <input type="date" id="start-date">
+      
+      <label for="end-date">End Date:</label>
+      <input type="date" id="end-date">
+      
+      <label for="report-type">Report Type:</label>
+      <select id="report-type">
+        <option value="sales">Sales Report</option>
+        <option value="inventory">Inventory Report</option>
+        <option value="customer">Customer Report</option>
+      </select><br>
+      
+      <button type="submit">Generate Report</button>
+    </form>
+    
+    <div class="report-container">
+      <!-- Generated report goes here -->
+    </div>
+  </main>
+  
+  <script>
+    // JavaScript for generating the report and printing it
+  </script>
+</body>
+</html>
