@@ -36,6 +36,14 @@ def sales_page():
 def manageproducts_page():
     return render_template('manageproducts.html')
 
+@app.route('/manageusers')
+def manageusers_page():
+    return render_template('manageusers.html')
+
+@app.route('/reports')
+def reports_page():
+    return render_template('reports.html')
+
 
 @app.route('/api/add', methods=['POST'])
 def add_product():
