@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.logout-btn i {
+  margin-right: 5px;
+}
+.home-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+form button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+h3 {
+  margin-top: 30px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"], input[type="text"] {
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"] {
+  width: 60px;
+}
+
+button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.user-list {
+  margin-top: 30px;
+}
+
+.user-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.user-list li:last-child {
+  margin-bottom: 0;
+}
+
+.user-list li span {
+  margin-right: 10px;
+}
+.user-list li button {
+  background-color: #333;
+  color: #fff;
+  float: right;
+ 
+}
+
+.edit-btn,
+.delete-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  background-color: #fff;
+  color: #333;
+}
+
+.edit-btn {
+ margin-right: 0;
+}
+
+.edit-btn i,
+.delete-btn i {
+  margin-right: 5px;
+}
+#role{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    margin-bottom: 15px;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>User Management</h1>
+    <button class="logout-btn"><i class="fas fa-power-off"></i> Logout</button>
+  </header>
+  <main>
+    <button class="home-btn" onclick="window.location.href='/dashboard'"><i class="fas fa-home"></i> Home</button>
+    <h2>Add User</h2>
+    <form>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password">
+      <label for="role">Role</label>
+      <select id="role" name="role">
+        <option value="admin">Admin</option>
+        <option value="cashier">Cashier</option>
+        <option value="salesManager">Sales Manager</option>
+      </select>
+      <button type="submit">Add User</button>
+    </form>
+
+    <h2>User List</h2>
+    <ul class="user-list">
+      <li>
+        <span class="user-name">User A</span>
+        <span class="user-email">usera@example.com</span>
+        <span class="user-role">Admin</span>
+        <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+        <button class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+      </li>
+      <li>
+        <span class="user-name">User B</span>
+        <span class="user-email">userb@example.com</span>
+        <span class="user-role">Staff</span>
+        <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+        <button class="delete-btn"><i class="fas fa-trash-alt"></i> Disable</button>
+      </li>
+    </ul>
+  </main>
+</body>
+</html>
