@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Point of Sale</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    /* Body */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    /* Header */
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Logo */
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      background-color: transparent;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Main */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Section Title */
+    h2 {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Form */
+    form {
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      padding: 20px;
+
+    }
+
+    /* Form Inputs */
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      width: 50%;
+      margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+      max-width: 150px;
+    }
+
+    /* Submit Button */
+    button[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .home-btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button[type="submit"]:hover {
+      background-color: #333;
+    }
+
+    footer {
+      float: right;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Sales</h1>
+  </header>
+  <main>
+    <button class="home-btn" onclick="window.location.href='/dashboard'"><i class="fas fa-home"></i> Home</button>
+    <!-- Product List -->
+    <h2>Product List</h2>
+    <ul id="product-list">
+      <p>No products available!!</p>
+    </ul>
+
+    <!-- Add Product Form -->
+    <h2>Add Product to Cart</h2>
+    <form id="add-product-form">
+      <label for="product-id">Product ID:</label>
+      <input type="number" id="product-id" name="product-id" min="1" required>
+      <label for="product-quantity">Quantity:</label>
+      <input type="number" id="product-quantity" name="product-quantity" min="1" required><br>
+      <button type="submit">Add to Cart</button>
+    </form>
+    <!-- Cart List -->
+    <h2>Cart</h2>
+    <ul id="cart-list">
+      <p>Nothing added yet!!</p>
+    </ul>
+
+    <!-- Checkout Form -->
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <label for="total-amount">Total Amount:</label>
+      <input type="text" id="total-amount" name="total-amount" readonly><br>
+      <button type="submit" onclick="window.alert('Do you want a receipt?')">Checkout</button>
+    </form>
+    <!-- Sales List -->
+    <h2>Sales History</h2>
+    <ul id="sales-list">
+      <li>No sales have been made</li>
+    </ul>
+
+
+
+
+
+
+  </main>
+  <footer>
+    <p>&copy; 2023 Point of Sale</p>
+  </footer>
+  <script src="pos.js"></script>
+</body>
+
+</html>
