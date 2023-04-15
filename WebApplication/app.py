@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, jsonify
 from flask_mysqldb import MySQL
 from SingleTonPattern.product import Product
+from SingleTonPattern.cart import Cart
+
 
 app = Flask(__name__)
 
@@ -12,7 +14,13 @@ app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'pos'
 
 mysql = MySQL(app)
+
+cart = Cart(mysql).get_instance()
+cart.clear_cart()
+
+
 product = Product(mysql).get_instance()
+
 
 @app.route('/')
 def home_page():
@@ -82,16 +90,24 @@ def search():
     
     return jsonify(products_list)
 
-@app.route('/api/add_to_cart', methods=['POST'])
+@app.route('/api/add-to-cart', methods=['POST'])
 def add_to_cart():
-   
+    productID = request.form['productID']
+    quantity = request.form['quantity']
 
-    return jsonify({'message': 'Added to cart'})
+    product_details = cart.product_details(productID,quantity)
 
+    cart.add_product(product_details)
 
-@app.route('/cart')
-def cart():
-   return 
+    in_cart = cart.get_products()
+    total_price = cart.get_total()
+
+    return jsonify({'products_in_cart': in_cart, 'total_amount': total_price})
+
+@app.route('/api/checkout')
+def checkout_from_cart():
+    cart.checkout()
+    return jsonify({'message': 'Checkout done!'})
 
 if __name__ == "__main__":
     app.run(debug=True)
