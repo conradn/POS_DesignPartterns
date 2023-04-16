@@ -49,8 +49,13 @@ def manageusers_page():
 @app.route('/reports')
 def reports_page():
     return render_template('reports.html')
+@app.route('/receipt')
+def receipt_page():
+    return render_template('receipt.html')
 
-
+@app.route('/settings')
+def settings_page():
+    return render_template('settings.html')
 @app.route('/api/add', methods=['POST'])
 def add_product():
     name = request.form['name']
