@@ -6,6 +6,8 @@ const app = Vue.createApp({
             searchQuerry: '',
             cart: null,
             total_amount: 0,
+            paymentMethod: null,
+            discountCode: null,
         }
     },
 
@@ -167,6 +169,19 @@ const app = Vue.createApp({
         },
 
         getSales(){
+
+        },
+
+        applyDiscount(){
+
+            if (this.discountCode != 123) {
+                toastr.error('Discount code is invalid!', '', { positionClass: 'toast-bottom-left' });
+                return;
+            }
+
+            this.total_amount = this.total_amount - 1000;
+
+            toastr.error('Discount applied!', '', { positionClass: 'toast-bottom-left' });
 
         }
     },

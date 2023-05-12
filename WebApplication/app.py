@@ -36,7 +36,8 @@ def dashboard_page():
 
 @app.route('/sales')
 def sales_page():
-    return render_template('sales.html')
+    products_list = product.get_products()
+    return render_template('sales.html',products=products_list)
 
 @app.route('/manageproducts')
 def manageproducts_page():

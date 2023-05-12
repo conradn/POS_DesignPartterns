@@ -122,77 +122,84 @@
     footer {
       float: right;
     }
-     #cart-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  #cart-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
-  }
-  #cart-list li:last-child {
-    border-bottom: none;
-  }
-  #cart-list li span {
-    font-size: 14px;
-    color: #666;
-    margin-left: 10px;
-  }
-  #cart-list li strong {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  #cart-list li input {
-    width: 50px;
-    margin-right: 10px;
-    text-align: center;
-  }
-   #payment-methods {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
 
-  }
-  #payment-method{
-    width: 50%;
-  }
-  
-  #payment-methods label {
-    margin-bottom: 5px;
-  }
-  .checkout-form {
-    max-width: 50%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  
+    #cart-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #cart-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    #cart-list li:last-child {
+      border-bottom: none;
+    }
+
+    #cart-list li span {
+      font-size: 14px;
+      color: #666;
+      margin-left: 10px;
+    }
+
+    #cart-list li strong {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    #cart-list li input {
+      width: 50px;
+      margin-right: 10px;
+      text-align: center;
+    }
+
+    #payment-methods {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+
+    }
+
+    #payment-method {
+      width: 50%;
+    }
+
+    #payment-methods label {
+      margin-bottom: 5px;
+    }
+
+    .checkout-form {
+      max-width: 50%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
   </style>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
@@ -220,31 +227,37 @@
     <h2>Add Product to Cart</h2>
     <form id="addProductToCartForm">
       <label for="product-id">Product ID:</label>
-      <input type="number" id="product-id" name="productID" min="1">
+      <select id="product-id" name="productID">
+        <option value="">select</option>
+        <option :value="product.id" v-for="product in products">
+           [[ product.name ]]
+        </option>
+      </select>
+      
       <label for="product-quantity">Quantity:</label>
       <input type="number" id="product-quantity" name="quantity" min="1"><br>
       <button type="submit" @click.prevent="addToCart">Add to Cart</button>
     </form>
     <!-- Cart List -->
-   <h2>Cart</h2>
-<div v-if="cart">
-  <ol id="cart-list">
-    <li v-for="cart in cart" :key="cart.id">
-      <strong>[[ cart.name ]]</strong>
-      <span>[[ cart.price.toLocaleString() ]]</span>
-      <span>([[ (cart.price * cart.quantity).toLocaleString() ]] for [[ cart.quantity ]])</span>
-      <input type="number" v-model="cart.quantity" min="1" @change="updateCart(cart)">
-    </li>
-  </ol>
-</div>
-<div v-else>
-  <p>No products added to Cart</p>
-</div>
+    <h2>Cart</h2>
+    <div v-if="cart">
+      <ol id="cart-list">
+        <li v-for="cart in cart" :key="cart.id">
+          <strong>[[ cart.name ]]</strong>
+          <span>[[ cart.price.toLocaleString() ]]</span>
+          <span>([[ (cart.price * cart.quantity).toLocaleString() ]] for [[ cart.quantity ]])</span>
+          <input type="number" v-model="cart.quantity" min="1" @change="updateCart(cart)">
+        </li>
+      </ol>
+    </div>
+    <div v-else>
+      <p>No products added to Cart</p>
+    </div>
 
-<div id="discount-form">
+    <div id="discount-form">
       <label for="discount-code">Discount Code:</label>
       <input type="text" id="discount-code" v-model="discountCode">
-      <button type =submit @click.prevent="applyDiscount">Apply Discount</button>
+      <button type=submit @click.prevent="applyDiscount">Apply Discount</button>
     </div>
 
     <!-- Checkout Form -->
@@ -253,30 +266,30 @@
       <label for="total-amount">Total Amount:</label>
       <input type="text" id="total-amount" name="total-amount" :value="total_amount.toLocaleString()" readonly><br>
       <div class="form-group">
-      <label for="payment-method">Payment Method:</label>
-      <select id="payment-method" v-model="paymentMethod" required>
-        <option value="">Select Payment Method</option>
-        <option value="card">Credit Card</option>
-        <option value="paypal">PayPal</option>
-        <option value="cash">Cash</option>
-      </select>
-    </div>
-    <div v-if="paymentMethod === 'card'" class="form-group">
-      <label for="card-number">Card Number:</label>
-      <input type="text" id="card-number" v-model="cardNumber" required>
-      <label for="expiration-date">Expiration Date:</label>
-      <input type="text" id="expiration-date" v-model="expirationDate" required>
-      <label for="cvv">CVV:</label>
-      <input type="text" id="cvv" v-model="cvv" required>
-    </div>
-    <div v-if="paymentMethod === 'paypal'" class="form-group">
-      <label for="paypal-email">PayPal Email:</label>
-      <input type="email" id="paypal-email" v-model="paypalEmail" required>
-    </div>
-    <div v-if="paymentMethod === 'cash'" class="form-group">
-      <label for="cash-amount">Amount:</label>
-      <input type="text" id="cash-amount" v-model="cashAmount" required>
-    </div>
+        <label for="payment-method">Payment Method:</label>
+        <select id="payment-method" v-model="paymentMethod" required>
+          <option value="">Select Payment Method</option>
+          <option value="card">Credit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="cash">Cash</option>
+        </select>
+      </div>
+      <div v-if="paymentMethod === 'card'" class="form-group">
+        <label for="card-number">Card Number:</label>
+        <input type="text" id="card-number" v-model="cardNumber" required>
+        <label for="expiration-date">Expiration Date:</label>
+        <input type="text" id="expiration-date" v-model="expirationDate" required>
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" v-model="cvv" required>
+      </div>
+      <div v-if="paymentMethod === 'paypal'" class="form-group">
+        <label for="paypal-email">PayPal Email:</label>
+        <input type="email" id="paypal-email" v-model="paypalEmail" required>
+      </div>
+      <div v-if="paymentMethod === 'cash'" class="form-group">
+        <label for="cash-amount">Amount:</label>
+        <input type="text" id="cash-amount" v-model="cashAmount" required>
+      </div>
       <button type="submit" @click.prevent="checkout">Checkout</button>
     </form>
     <!-- Sales List -->
